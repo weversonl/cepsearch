@@ -1,0 +1,19 @@
+server:
+  servlet:
+    context-path: /api
+
+feign:
+  client:
+    config:
+      default:
+        defaultRequestHeaders:
+          user-agent:
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'
+
+app:
+  client:
+    brasilapi:
+      cep:
+        url: https://brasilapi.com.br/api/cep/v2
+      cnpj:
+        url: https://brasilapi.com.br/api/cnpj/v1
