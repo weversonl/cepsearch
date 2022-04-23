@@ -29,7 +29,7 @@ public class CepSearchServiceTest {
     private CepSearchService cepSearchService;
 
     @Test
-    public void test_return_cep_response_when_service_returns_success(){
+    public void test_return_cep_response_when_service_returns_success() {
 
         String cep = "01021200";
 
@@ -64,7 +64,7 @@ public class CepSearchServiceTest {
     }
 
     @Test
-    public void test_return_not_found_execption_when_service_no_find_cep(){
+    public void test_return_not_found_execption_when_service_no_find_cep() {
 
         when(cepSearchClient.findByCep(anyString())).thenThrow(FeignException.NotFound.class);
 
@@ -75,7 +75,7 @@ public class CepSearchServiceTest {
     }
 
     @Test
-    public void test_return_technical_execption_when_service_returns_error(){
+    public void test_return_technical_execption_when_service_returns_error() {
 
         when(cepSearchClient.findByCep(anyString())).thenThrow(IllegalArgumentException.class);
 

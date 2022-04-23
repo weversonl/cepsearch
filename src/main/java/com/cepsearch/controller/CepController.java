@@ -21,7 +21,7 @@ public class CepController {
     }
 
     @GetMapping("/cep/{cep}")
-    public ResponseEntity<CepModel> findAddress(@PathVariable("cep") String cep){
+    public ResponseEntity<CepModel> findAddress(@PathVariable("cep") String cep) {
         CepModel cepModelResponse = cepSearchService.findAddressByCep(cep);
         return ResponseEntity.ok(cepModelResponse);
     }
