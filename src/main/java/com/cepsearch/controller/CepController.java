@@ -1,7 +1,7 @@
 package com.cepsearch.controller;
 
 import com.cepsearch.model.cep.CepModel;
-import com.cepsearch.service.cep.CepSearchService;
+import com.cepsearch.cep.CepSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

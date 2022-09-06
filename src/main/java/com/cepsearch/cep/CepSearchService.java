@@ -1,4 +1,4 @@
-package com.cepsearch.service.cep;
+package com.cepsearch.cep;
 
 import com.cepsearch.client.CepSearchClient;
 import com.cepsearch.exception.impl.NotFoundException;
