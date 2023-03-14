@@ -23,9 +23,9 @@ Make sure you have Docker installed on your machine. [Dockerhub]("https://hub.do
 
         curl --location --request GET 'localhost:8080/api/cep/17560-246'
 
-### Compile source code with maven
+### Execute source code with maven
 
-Make sure you have Java installed on your machine.
+Make sure you have Java and Maven installed on your machine.
 
 1. Clone the repository or download the source code
 
@@ -39,6 +39,28 @@ Make sure you have Java installed on your machine.
 3. Run the Spring Boot project
 
         mvn spring-boot:run
+
+4. Make a search by sending the desired zip code as QueryParam, in your desired client. Below I leave an example curl
+
+        curl --location --request GET 'localhost:8080/api/cep/17560-246'
+
+### Compile source code with maven
+
+Make sure you have Java and Maven installed on your machine.
+
+1. Clone the repository or download the source code
+
+        git clone https://github.com/WeversonL/cepsearch.git
+        cd cepsearch
+
+2. Download maven dependencies and build package
+
+        mvn clean install
+        mvn clean package
+
+3. Run the Jar File
+
+        java -jar target/cepsearch-1.0.0.jar
 
 4. Make a search by sending the desired zip code as QueryParam, in your desired client. Below I leave an example curl
 
