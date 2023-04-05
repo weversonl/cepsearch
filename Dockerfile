@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-buster
+FROM openjdk:8-jre-slim-buster
 VOLUME /app
 EXPOSE 8080
 COPY target/cepsearch-1.0.0.jar /app/app.jar
