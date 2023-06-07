@@ -1,6 +1,5 @@
 package com.cepsearch.dto.response;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -16,10 +15,7 @@ public class LocationTest {
 	String longitude = "1.23456";
 	String latitude = "4.56789";
 
-	Coordinates coordinates = Coordinates.builder()
-		.longitude(longitude)
-		.latitude(latitude)
-		.build();
+	Coordinates coordinates = Coordinates.builder().longitude(longitude).latitude(latitude).build();
 
 	assertEquals(longitude, coordinates.getLongitude());
 	assertEquals(latitude, coordinates.getLatitude());

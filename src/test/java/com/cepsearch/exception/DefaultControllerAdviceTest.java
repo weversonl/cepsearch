@@ -22,20 +22,20 @@ public class DefaultControllerAdviceTest {
     @Test
     public void testHandleNotFoundException() {
 
-        NotFoundException exception = new NotFoundException();
-        ResponseEntity<ApiErrorResponse> responseEntity = defaultControllerAdvice.handleNotFoundException(exception);
+	NotFoundException exception = new NotFoundException();
+	ResponseEntity<ApiErrorResponse> responseEntity = defaultControllerAdvice.handleNotFoundException(exception);
 
-        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+	assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
 
     }
 
     @Test
     public void testHandleTechnicalException() {
 
-        TechnicalException exception = new TechnicalException();
-        ResponseEntity<ApiErrorResponse> responseEntity = defaultControllerAdvice.handleTechnicalException(exception);
+	TechnicalException exception = new TechnicalException();
+	ResponseEntity<ApiErrorResponse> responseEntity = defaultControllerAdvice.handleTechnicalException(exception);
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+	assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
 
     }
 }

@@ -14,10 +14,7 @@ public class CoordinatesTest {
 	String longitude = "123.456";
 	String latitude = "-12.345";
 
-	Coordinates coordinates = Coordinates.builder()
-		.longitude(longitude)
-		.latitude(latitude)
-		.build();
+	Coordinates coordinates = Coordinates.builder().longitude(longitude).latitude(latitude).build();
 
 	assertEquals(longitude, coordinates.getLongitude());
 	assertEquals(latitude, coordinates.getLatitude());

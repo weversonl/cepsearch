@@ -3,7 +3,6 @@ package com.cepsearch.dto.response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;

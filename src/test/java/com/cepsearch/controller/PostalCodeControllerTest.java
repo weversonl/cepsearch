@@ -25,11 +25,7 @@ public class PostalCodeControllerTest {
     @Test
     public void testFindAddress() {
 
-	PostalCodeResponse expectedResponse = PostalCodeResponse.builder()
-		.cep("12345678")
-		.city("Sao Paulo")
-		.state("SP")
-		.build();
+	PostalCodeResponse expectedResponse = PostalCodeResponse.builder().cep("12345678").city("Sao Paulo").state("SP").build();
 
 	when(postalCodeService.findAddressByCep(any())).thenReturn(expectedResponse);
 

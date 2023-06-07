@@ -16,22 +16,10 @@ public class PostalCodeResponseTest {
 	String city = "Sample City";
 	String street = "Sample Street";
 	String neighborhood = "Sample Neighborhood";
-	Location location = Location.builder()
-		.type("x")
-		.coordinates(Coordinates.builder()
-			.latitude("1.5")
-			.longitude("1.5")
-			.build())
-		.build();
+	Location location = Location.builder().type("x").coordinates(Coordinates.builder().latitude("1.5").longitude("1.5").build()).build();
 
-	PostalCodeResponse postalCodeResponse = PostalCodeResponse.builder()
-		.cep(cep)
-		.state(state)
-		.city(city)
-		.street(street)
-		.neighborhood(neighborhood)
-		.location(location)
-		.build();
+	PostalCodeResponse postalCodeResponse = PostalCodeResponse.builder().cep(cep).state(state).city(city).street(street)
+		.neighborhood(neighborhood).location(location).build();
 
 	assertEquals(cep, postalCodeResponse.getCep());
 	assertEquals(state, postalCodeResponse.getState());
