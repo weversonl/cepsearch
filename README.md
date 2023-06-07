@@ -71,7 +71,7 @@ Make sure you have Java and Maven installed on your machine.
 ## License
 
 `cepsearch` is released under the [GNU General Public License, Version 2](LICENSE)
-    
+
         Copyright (C) 2022 Weverson Lemos
 
         This program is free software; you can redistribute it and/or

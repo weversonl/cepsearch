@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  api:
+    depends_on:
+      - cache
+    build: .
+    container_name: cepsearch
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      HOST: rediscs
+    networks:
+      - cs-be
+
+  cache:
+    image: redis:latest
+    container_name: rediscs
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - cs-be
+
+networks:
+  cs-be:
+    driver: bridge

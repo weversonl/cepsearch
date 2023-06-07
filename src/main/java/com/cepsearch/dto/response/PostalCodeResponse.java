@@ -1,16 +1,19 @@
-package com.cepsearch.model.cep;
+package com.cepsearch.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.redis.core.RedisHash;
+
+import java.io.Serializable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CepModel {
+@RedisHash(value = "PostalCode")
+public class PostalCodeResponse implements Serializable {
+
+    private static final long serialVersionUID = 6583635153965709585L;
 
     @JsonProperty("cep")
     private String cep;
