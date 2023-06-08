@@ -5,19 +5,25 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
+
+import static com.cepsearch.utils.statics.TimeToLiveRedis.TWENTY_FOUR_HRS;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@RedisHash(value = "PostalCode")
+@RedisHash(value = "PostalCode", timeToLive = TWENTY_FOUR_HRS)
 public class PostalCodeResponse implements Serializable {
 
     private static final long serialVersionUID = 6583635153965709585L;
 
+    @Id
+    @Indexed
     @JsonProperty("cep")
     private String cep;
 
