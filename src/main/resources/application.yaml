@@ -3,9 +3,10 @@ spring:
     name: cepsearch
   cache:
     type: redis
-    redis:
-      host: ${HOST}
-      port: 6379
+  redis:
+    host: ${HOST}
+    port: 6379
+    timeout: 60000
 
 server:
   port: ${PORT:8080}

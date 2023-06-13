@@ -9,7 +9,7 @@ public class NotFoundException extends ApiException implements Serializable {
     private static final long serialVersionUID = 1050794036754112425L;
 
     public NotFoundException() {
-	super(ResponseError.NOT_FOUND_EXCEPTION);
+        super(ResponseError.NOT_FOUND_EXCEPTION);
     }
 
 }

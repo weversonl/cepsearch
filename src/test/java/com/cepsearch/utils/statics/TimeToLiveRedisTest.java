@@ -7,13 +7,15 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ValidationMessagesTest {
+public class TimeToLiveRedisTest {
 
     @Test
-    public void testInvalidCepMessage() {
-        String message = ValidationMessages.INVALID_CEP;
+    public void testRescueTimeToLive() {
 
-        assertEquals("The postal code sent is invalid", message);
+        int twentyFourHoursInSeconds = 86400;
+        int time = TimeToLiveRedis.TWENTY_FOUR_HRS;
+
+        assertEquals(twentyFourHoursInSeconds, time);
     }
 
 }

@@ -11,11 +11,11 @@ public class ResponseErrorTest {
 
     @Test
     public void testResponseErrorProperties() {
-	ResponseError error = ResponseError.TECHNICAL_EXCEPTION;
+        ResponseError error = ResponseError.TECHNICAL_EXCEPTION;
 
-	assertEquals(Integer.valueOf(500), error.getStatusCode());
-	assertEquals("Technical Exception", error.getDescription());
-	assertEquals("There were technical errors with the API https://brasilapi.com.br/", error.getMessage());
+        assertEquals(Integer.valueOf(500), error.getStatusCode());
+        assertEquals("Technical Exception", error.getDescription());
+        assertEquals("There were technical errors in application", error.getMessage());
     }
 
 }

@@ -9,7 +9,7 @@ public class TechnicalException extends ApiException implements Serializable {
     private static final long serialVersionUID = -746537408915725028L;
 
     public TechnicalException() {
-	super(ResponseError.TECHNICAL_EXCEPTION);
+        super(ResponseError.TECHNICAL_EXCEPTION);
     }
 
 }

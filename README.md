@@ -1,70 +1,40 @@
 # cepsearch
 
-### Java to consumes REST API
+### About
 
-API developed for consumption of BrasilAPI. In it, OpenFeign was used to integrate REST Clients. Made for study and
-practice purposes!
+API developed for consumption of BrasilAPI. In it, OpenFeign was used to integrate REST Clients. An in-memory database for caching, Redis, was also used. Along with other technologies like Docker and the docker-compose plugin. The API was developed to practice programming and to study.
+
+## Screenshot
+
+![request_screenshot](assets/image.png)
+
+## Requirements
+
+1. [Docker](https://docs.docker.com/engine/install/)
+2. [Docker-compose](https://docs.docker.com/compose/)
 
 ## Get Started
 
-### Running the application with Docker
+### Running the application with docker-compose
 
-Make sure you have Docker installed on your machine. [Dockerhub]("https://hub.docker.com/r/weversonlemos/cepsearch")
+1. Clone the repository or download the source code
 
-1. Clone the image
+        git clone https://github.com/WeversonL/cepsearch.git
+        cd cepsearch
 
-        docker pull weversonlemos/cepsearch:latest
+2. Start with docker-compose
 
-2. Start container with image
-
-        docker run -p 8080:8080 --name cepsearch weversonlemos/cepsearch:latest
+        docker-compose up -d
 
 3. Make a search by sending the desired zip code as QueryParam, in your desired client. Below I leave an example curl
 
         curl --location --request GET 'localhost:8080/api/cep/17560-246'
 
-### Execute source code with maven
+### Other information
 
-Make sure you have Java and Maven installed on your machine.
+1. To terminate the containers, you can run
 
-1. Clone the repository or download the source code
-
-        git clone https://github.com/WeversonL/cepsearch.git
-        cd cepsearch
-
-2. Download maven dependencies
-
-        mvn clean install
-
-3. Run the Spring Boot project
-
-        mvn spring-boot:run
-
-4. Make a search by sending the desired zip code as QueryParam, in your desired client. Below I leave an example curl
-
-        curl --location --request GET 'localhost:8080/api/cep/17560-246'
-
-### Compile source code with maven
-
-Make sure you have Java and Maven installed on your machine.
-
-1. Clone the repository or download the source code
-
-        git clone https://github.com/WeversonL/cepsearch.git
-        cd cepsearch
-
-2. Download maven dependencies and build package
-
-        mvn clean install
-        mvn clean package
-
-3. Run the Jar File
-
-        java -jar target/cepsearch-1.0.0.jar
-
-4. Make a search by sending the desired zip code as QueryParam, in your desired client. Below I leave an example curl
-
-        curl --location --request GET 'localhost:8080/api/cep/17560-246'
+        docker-compose down
 
 ⚠️ Still in development
 

@@ -25,13 +25,13 @@ public class PostalCodeControllerTest {
     @Test
     public void testFindAddress() {
 
-	PostalCodeResponse expectedResponse = PostalCodeResponse.builder().cep("12345678").city("Sao Paulo").state("SP").build();
+        PostalCodeResponse expectedResponse = PostalCodeResponse.builder().cep("12345678").city("Sao Paulo").state("SP").build();
 
-	when(postalCodeService.findAddressByCep(any())).thenReturn(expectedResponse);
+        when(postalCodeService.findAddressByCep(any())).thenReturn(expectedResponse);
 
-	PostalCodeResponse actualResponse = postalCodeController.findAddress(anyString());
+        PostalCodeResponse actualResponse = postalCodeController.findAddress(anyString());
 
-	assertEquals(expectedResponse, actualResponse);
+        assertEquals(expectedResponse, actualResponse);
 
     }
 

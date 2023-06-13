@@ -2,16 +2,21 @@ package com.cepsearch.client;
 
 import com.cepsearch.dto.request.PostalCodeRequest;
 import com.cepsearch.dto.response.PostalCodeResponse;
+import com.cepsearch.repository.RedisClientRepository;
 import com.cepsearch.service.impl.PostalCodeServiceImpl;
+import feign.FeignException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PostalCodeClientTest {
@@ -19,21 +24,34 @@ public class PostalCodeClientTest {
     @Mock
     private PostalCodeClient postalCodeClient;
 
+    @Mock
+    private RedisClientRepository redisClientRepository;
+
     @InjectMocks
     private PostalCodeServiceImpl postalCodeService;
 
     @Test
     public void testFindByCep() {
 
-	PostalCodeResponse expectedResponse = PostalCodeResponse.builder().cep("12345678").city("Sao Paulo").state("SP").build();
+        PostalCodeResponse expectedResponse = PostalCodeResponse.builder().cep("12345678").city("Sao Paulo").state("SP").build();
 
-	PostalCodeRequest postalCodeRequest = PostalCodeRequest.builder().postalCode("12345678").build();
+        PostalCodeRequest postalCodeRequest = new PostalCodeRequest("12345678");
 
-	when(postalCodeClient.findByCep(anyString())).thenReturn(expectedResponse);
+        when(redisClientRepository.findById(anyString())).thenReturn(Optional.empty());
+        when(postalCodeClient.findByCep(anyString())).thenReturn(expectedResponse);
 
-	PostalCodeResponse actualResponse = postalCodeService.findAddressByCep(postalCodeRequest);
+        PostalCodeResponse actualResponse = postalCodeService.findAddressByCep(postalCodeRequest);
 
-	assertEquals(expectedResponse, actualResponse);
+        assertEquals(expectedResponse, actualResponse);
+    }
+
+    @Test
+    public void testFindByCep_FeignException() {
+
+        String cep = "12345678";
+        when(postalCodeClient.findByCep(cep)).thenThrow(FeignException.NotFound.class);
+        assertThrows(FeignException.NotFound.class, () -> postalCodeClient.findByCep(cep));
+        verify(postalCodeClient, times(1)).findByCep(cep);
     }
 
 }

@@ -10,6 +10,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableCaching
 public class CepSearchApplication {
     public static void main(String[] args) {
-	SpringApplication.run(CepSearchApplication.class, args);
+        SpringApplication.run(CepSearchApplication.class, args);
     }
 }

@@ -18,7 +18,7 @@ public class PostalCodeController {
 
     @GetMapping("/cep/{cep}")
     public PostalCodeResponse findAddress(@PathVariable("cep") String cep) {
-	return postalCodeService.findAddressByCep(new PostalCodeRequest(cep));
+        return postalCodeService.findAddressByCep(new PostalCodeRequest(cep));
     }
 
 }

@@ -12,13 +12,13 @@ public class LocationTest {
     @Test
     public void testLocation() {
 
-	String longitude = "1.23456";
-	String latitude = "4.56789";
+        String longitude = "1.23456";
+        String latitude = "4.56789";
 
-	Coordinates coordinates = Coordinates.builder().longitude(longitude).latitude(latitude).build();
+        Coordinates coordinates = Coordinates.builder().longitude(longitude).latitude(latitude).build();
 
-	assertEquals(longitude, coordinates.getLongitude());
-	assertEquals(latitude, coordinates.getLatitude());
+        assertEquals(longitude, coordinates.getLongitude());
+        assertEquals(latitude, coordinates.getLatitude());
     }
 
 }

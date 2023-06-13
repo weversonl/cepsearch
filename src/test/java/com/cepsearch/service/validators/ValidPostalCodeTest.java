@@ -17,35 +17,35 @@ public class ValidPostalCodeTest {
 
     @Test
     public void testIsValid_ValidPostalCode() {
-	String validPostalCode = "12345678";
-	assertTrue(validator.isValid(validPostalCode, mockConstraintValidatorContext()));
+        String validPostalCode = "12345678";
+        assertTrue(validator.isValid(validPostalCode, mockConstraintValidatorContext()));
     }
 
     @Test
     public void testIsValid_NullPostalCode() {
-	assertFalse(validator.isValid(null, mockConstraintValidatorContext()));
+        assertFalse(validator.isValid(null, mockConstraintValidatorContext()));
     }
 
     @Test
     public void testIsValid_EmptyPostalCode() {
-	String emptyPostalCode = "";
-	assertFalse(validator.isValid(emptyPostalCode, mockConstraintValidatorContext()));
+        String emptyPostalCode = "";
+        assertFalse(validator.isValid(emptyPostalCode, mockConstraintValidatorContext()));
     }
 
     @Test
     public void testIsValid_PostalCodeWithDash() {
-	String postalCodeWithDash = "12345-678";
-	assertTrue(validator.isValid(postalCodeWithDash, mockConstraintValidatorContext()));
+        String postalCodeWithDash = "12345-678";
+        assertTrue(validator.isValid(postalCodeWithDash, mockConstraintValidatorContext()));
     }
 
     @Test
     public void testIsValid_PostalCodeExceedingMaxLength() {
-	String postalCodeExceedingMaxLength = "123456789";
-	assertFalse(validator.isValid(postalCodeExceedingMaxLength, mockConstraintValidatorContext()));
+        String postalCodeExceedingMaxLength = "123456789";
+        assertFalse(validator.isValid(postalCodeExceedingMaxLength, mockConstraintValidatorContext()));
     }
 
     private ConstraintValidatorContext mockConstraintValidatorContext() {
-	return null;
+        return null;
     }
 
 }

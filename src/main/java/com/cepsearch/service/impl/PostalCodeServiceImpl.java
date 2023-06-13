@@ -29,20 +29,31 @@ public class PostalCodeServiceImpl implements PostalCodeService {
 
     @Override
     public PostalCodeResponse findAddressByCep(@Valid PostalCodeRequest request) {
-	try {
-	    Optional<PostalCodeResponse> redis = redisClientRepository.findById(request.getPostalCode());
-	    if (redis.isPresent()) {
-		return redis.get();
-	    }
-	    PostalCodeResponse response = postalCodeClient.findByCep(request.getPostalCode());
-	    redisClientRepository.save(response);
-	    return response;
-	} catch (FeignException.NotFound e) {
-	    log.error("Error finding data -> " + NOT_FOUND_EXCEPTION.getMessage());
-	    throw new NotFoundException();
-	} catch (Exception e) {
-	    log.error("API query error -> " + e.getMessage());
-	    throw new TechnicalException();
-	}
+        try {
+
+            if (request.getPostalCode().contains("-"))
+                request.setPostalCode(request.getPostalCode().replace("-", ""));
+
+            Optional<PostalCodeResponse> redis = redisClientRepository.findById(request.getPostalCode());
+            if (redis.isPresent()) {
+                log.info("Data were found in cache. Submitting the cache response to the request -> {}", redis.get());
+                return redis.get();
+            }
+
+            log.info("No data was found in the cache for this postalcode: {}, starting request for API", request.getPostalCode());
+            PostalCodeResponse response = postalCodeClient.findByCep(request.getPostalCode());
+
+            log.info("Requisition successfully finished, saving response in cache -> {}", response);
+            redisClientRepository.save(response);
+            return response;
+
+        } catch (FeignException.NotFound e) {
+            log.error(NOT_FOUND_EXCEPTION.getMessage());
+            throw new NotFoundException();
+        } catch (Exception e) {
+            log.error("error on service: PostalCodeService -> " + e);
+            log.error("error on service: PostalCodeService -> " + e.getCause());
+            throw new TechnicalException();
+        }
     }
 }

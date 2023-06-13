@@ -20,16 +20,16 @@ public class DefaultControllerAdvice {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ApiErrorResponse> handleNotFoundException(NotFoundException e) {
-	return ResponseEntity.status(NOT_FOUND_EXCEPTION.getStatusCode())
-		.body(ApiErrorResponse.builder().code(NOT_FOUND_EXCEPTION.getStatusCode()).description(NOT_FOUND_EXCEPTION.getDescription())
-			.message(NOT_FOUND_EXCEPTION.getMessage()).build());
+        return ResponseEntity.status(NOT_FOUND_EXCEPTION.getStatusCode())
+                .body(ApiErrorResponse.builder().code(NOT_FOUND_EXCEPTION.getStatusCode()).description(NOT_FOUND_EXCEPTION.getDescription())
+                        .message(NOT_FOUND_EXCEPTION.getMessage()).build());
     }
 
     @ExceptionHandler(TechnicalException.class)
     public ResponseEntity<ApiErrorResponse> handleTechnicalException(TechnicalException e) {
-	return ResponseEntity.status(TECHNICAL_EXCEPTION.getStatusCode())
-		.body(ApiErrorResponse.builder().code(TECHNICAL_EXCEPTION.getStatusCode()).description(TECHNICAL_EXCEPTION.getDescription())
-			.message(TECHNICAL_EXCEPTION.getMessage()).build());
+        return ResponseEntity.status(TECHNICAL_EXCEPTION.getStatusCode())
+                .body(ApiErrorResponse.builder().code(TECHNICAL_EXCEPTION.getStatusCode()).description(TECHNICAL_EXCEPTION.getDescription())
+                        .message(TECHNICAL_EXCEPTION.getMessage()).build());
     }
 
     @ResponseBody
@@ -37,17 +37,17 @@ public class DefaultControllerAdvice {
     @ExceptionHandler(ConstraintViolationException.class)
     public ApiErrorResponse onConstraintValidationException(ConstraintViolationException constraintViolations) {
 
-	ApiErrorResponse apiErrorResponse = ApiErrorResponse.builder().code(BAD_REQUEST_EXCEPTION.getStatusCode())
-		.description(BAD_REQUEST_EXCEPTION.getDescription()).build();
+        ApiErrorResponse apiErrorResponse = ApiErrorResponse.builder().code(BAD_REQUEST_EXCEPTION.getStatusCode())
+                .description(BAD_REQUEST_EXCEPTION.getDescription()).build();
 
-	for (ConstraintViolation<?> violation : constraintViolations.getConstraintViolations()) {
+        for (ConstraintViolation<?> violation : constraintViolations.getConstraintViolations()) {
 
-	    String message = violation.getMessage(); // violation.getInvalidValue()
-	    apiErrorResponse.setMessage(message);
+            String message = violation.getMessage();
+            apiErrorResponse.setMessage(message);
 
-	}
+        }
 
-	return apiErrorResponse;
+        return apiErrorResponse;
 
     }
 

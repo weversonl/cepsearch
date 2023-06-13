@@ -12,25 +12,25 @@ public class ValidPostalCodeImpl implements ConstraintValidator<ValidPostalCode,
 
     @Override
     public void initialize(ValidPostalCode constraintAnnotation) {
-	ConstraintValidator.super.initialize(constraintAnnotation);
+        ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override
     public boolean isValid(String cep, ConstraintValidatorContext constraintValidatorContext) {
 
-	if (Objects.isNull(cep) || cep.isEmpty()) {
-	    return false;
-	}
+        if (Objects.isNull(cep) || cep.isEmpty()) {
+            return false;
+        }
 
-	if (cep.contains("-")) {
-	    cep = cep.replace("-", "");
-	} else if (!cep.matches("[0-9]+")) {
-	    return false;
-	}
+        if (cep.contains("-")) {
+            cep = cep.replace("-", "");
+        } else if (!cep.matches("[0-9]+")) {
+            return false;
+        }
 
-	cep = cep.trim();
+        cep = cep.trim();
 
-	return cep.length() <= MAX_CEP_LENGTH;
+        return cep.length() <= MAX_CEP_LENGTH;
 
     }
 
