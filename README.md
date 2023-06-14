@@ -1,6 +1,6 @@
 # cepsearch
 
-### About
+## About
 
 API developed for consumption of BrasilAPI. In it, OpenFeign was used to integrate REST Clients. An in-memory database for caching, Redis, was also used. Along with other technologies like Docker and the docker-compose plugin. The API was developed to practice programming and to study.
 
