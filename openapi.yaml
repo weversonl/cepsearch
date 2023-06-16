@@ -1,0 +1,154 @@
+swagger: '2.0'
+info:
+  description: 'This microservice is responsible for consuming an external API and getting addresses by postal code'
+  version: 1.1.0
+  title: 'Address search by postal code'
+  contact:
+    name: 'Weverson Lemos'
+    email: 'weversonl@proton.me'
+    url: 'https://github.com/WeversonL/cepsearch'
+  x-technical-owner: 'Weverson Lemos'
+
+host: 'localhost:8080'
+basePath: /api/cep
+
+tags:
+  - name: 'Address search by postal code'
+    description: 'This microservice is responsible for consuming an external API and getting addresses by postal code'
+
+schemes:
+  - http
+  # - https
+
+security:
+  - api_key: [ ]
+  - oauth2_key: [ ]
+
+parameters:
+  cep:
+    in: path
+    name: cep
+    required: true
+    type: string
+    description: 'The postal code that will be fetched from the API'
+
+responses:
+  200-ok:
+    description: Successful Request
+    schema:
+      $ref: '#/definitions/Response'
+  400-BadRequest:
+    description: 'Bad request'
+    schema:
+      $ref: '#/definitions/ApiError'
+  404-NotFound:
+    description: 'Not found'
+    schema:
+      $ref: '#/definitions/ApiError'
+  500-Exception:
+    description: 'Internal Server Error'
+    schema:
+      $ref: '#/definitions/ApiError'
+
+paths:
+  /{cep}:
+    get:
+      tags:
+        - 'Address search by postal code'
+      summary: 'getting addresses'
+      description: 'This microservice is responsible for consuming an external API and getting addresses by postal code'
+      operationId: cepsearchGet
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/cep'
+      responses:
+        200:
+          $ref: '#/responses/200-ok'
+        400:
+          $ref: '#/responses/400-BadRequest'
+        404:
+          $ref: '#/responses/404-NotFound'
+        500:
+          $ref: '#/responses/500-Exception'
+
+definitions:
+
+  ApiError:
+    type: object
+    description: 'Error API responses'
+    properties:
+      code:
+        type: integer
+        format: int32
+        description: 'Error ID'
+      message:
+        type: string
+        description: 'Error Description'
+      description:
+        type: string
+        description: 'Error Details'
+
+  Response:
+    type: object
+    title: 'Response'
+    description: 'Address response from API'
+    properties:
+      cep:
+        title: 'Postal Code'
+        type: string
+        description: 'Postal Code'
+        example: '09130200'
+      state:
+        title: 'State'
+        type: string
+        description: 'State'
+        example: 'SP'
+      city:
+        title: 'City'
+        type: string
+        description: 'City'
+        example: 'Santo André'
+      street:
+        title: 'Street'
+        type: string
+        description: 'Street'
+        example: 'Rua Euclides de Figueiredo'
+      neighborhood:
+        title: 'Neighborhood'
+        type: string
+        description: 'Neighborhood'
+        example: 'Vila Lutécia'
+      location:
+        $ref: '#/definitions/Location'
+
+  Location:
+    type: object
+    title: 'Location'
+    description: 'Location object'
+    properties:
+      type:
+        title: 'Type'
+        type: string
+        description: 'Location type'
+        example: 'Point'
+      coordinates:
+        $ref: '#/definitions/Coordinates'
+
+  Coordinates:
+    type: object
+    title: 'Coordinates'
+    description: 'Coordinates object'
+    properties:
+      longitude:
+        title: 'Longitude'
+        type: string
+        description: 'Longitude geolocation'
+        example: '-46.5046571'
+      latitude:
+        title: 'Latitude'
+        type: string
+        description: 'Latitude geolocation'
+        example: '-23.6920031'
