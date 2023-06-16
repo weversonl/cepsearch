@@ -1,154 +1,166 @@
-swagger: '2.0'
+openapi: 3.0.1
 info:
-  description: 'This microservice is responsible for consuming an external API and getting addresses by postal code'
-  version: 1.1.0
-  title: 'Address search by postal code'
+  title: Address search by postal code
+  description: This microservice is responsible for consuming an external API and
+    getting addresses by postal code
   contact:
-    name: 'Weverson Lemos'
-    email: 'weversonl@proton.me'
-    url: 'https://github.com/WeversonL/cepsearch'
-  x-technical-owner: 'Weverson Lemos'
-
-host: 'localhost:8080'
-basePath: /api/cep
-
+    name: Weverson Lemos
+    url: https://github.com/WeversonL/cepsearch
+    email: weversonl@proton.me
+  version: 1.1.0
+  x-technical-owner: Weverson Lemos
+servers:
+- url: http://localhost:8080/api/cep
 tags:
-  - name: 'Address search by postal code'
-    description: 'This microservice is responsible for consuming an external API and getting addresses by postal code'
-
-schemes:
-  - http
-  # - https
-
-security:
-  - api_key: [ ]
-  - oauth2_key: [ ]
-
-parameters:
-  cep:
-    in: path
-    name: cep
-    required: true
-    type: string
-    description: 'The postal code that will be fetched from the API'
-
-responses:
-  200-ok:
-    description: Successful Request
-    schema:
-      $ref: '#/definitions/Response'
-  400-BadRequest:
-    description: 'Bad request'
-    schema:
-      $ref: '#/definitions/ApiError'
-  404-NotFound:
-    description: 'Not found'
-    schema:
-      $ref: '#/definitions/ApiError'
-  500-Exception:
-    description: 'Internal Server Error'
-    schema:
-      $ref: '#/definitions/ApiError'
-
+- name: Address search by postal code
+  description: This microservice is responsible for consuming an external API and
+    getting addresses by postal code
 paths:
   /{cep}:
     get:
       tags:
-        - 'Address search by postal code'
-      summary: 'getting addresses'
-      description: 'This microservice is responsible for consuming an external API and getting addresses by postal code'
+      - Address search by postal code
+      summary: getting addresses
+      description: This microservice is responsible for consuming an external API
+        and getting addresses by postal code
       operationId: cepsearchGet
-      consumes:
-        - application/json
-      produces:
-        - application/json
       parameters:
-        - $ref: '#/parameters/cep'
+      - name: cep
+        in: path
+        description: The postal code that will be fetched from the API
+        required: true
+        schema:
+          type: string
       responses:
         200:
-          $ref: '#/responses/200-ok'
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
         400:
-          $ref: '#/responses/400-BadRequest'
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
         404:
-          $ref: '#/responses/404-NotFound'
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
         500:
-          $ref: '#/responses/500-Exception'
-
-definitions:
-
-  ApiError:
-    type: object
-    description: 'Error API responses'
-    properties:
-      code:
-        type: integer
-        format: int32
-        description: 'Error ID'
-      message:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+components:
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error ID
+          format: int32
+        message:
+          type: string
+          description: Error Description
+        description:
+          type: string
+          description: Error Details
+      description: Error API responses
+    Response:
+      title: Response
+      type: object
+      properties:
+        cep:
+          title: Postal Code
+          type: string
+          description: Postal Code
+          example: "09130200"
+        state:
+          title: State
+          type: string
+          description: State
+          example: SP
+        city:
+          title: City
+          type: string
+          description: City
+          example: Santo André
+        street:
+          title: Street
+          type: string
+          description: Street
+          example: Rua Euclides de Figueiredo
+        neighborhood:
+          title: Neighborhood
+          type: string
+          description: Neighborhood
+          example: Vila Lutécia
+        location:
+          $ref: '#/components/schemas/Location'
+      description: Address response from API
+    Location:
+      title: Location
+      type: object
+      properties:
+        type:
+          title: Type
+          type: string
+          description: Location type
+          example: Point
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+      description: Location object
+    Coordinates:
+      title: Coordinates
+      type: object
+      properties:
+        longitude:
+          title: Longitude
+          type: string
+          description: Longitude geolocation
+          example: -46.5046571
+        latitude:
+          title: Latitude
+          type: string
+          description: Latitude geolocation
+          example: -23.6920031
+      description: Coordinates object
+  responses:
+    200-ok:
+      description: Successful Request
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/Response'
+    400-BadRequest:
+      description: Bad request
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    404-NotFound:
+      description: Not found
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    500-Exception:
+      description: Internal Server Error
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  parameters:
+    cep:
+      name: cep
+      in: path
+      description: The postal code that will be fetched from the API
+      required: true
+      schema:
         type: string
-        description: 'Error Description'
-      description:
-        type: string
-        description: 'Error Details'
-
-  Response:
-    type: object
-    title: 'Response'
-    description: 'Address response from API'
-    properties:
-      cep:
-        title: 'Postal Code'
-        type: string
-        description: 'Postal Code'
-        example: '09130200'
-      state:
-        title: 'State'
-        type: string
-        description: 'State'
-        example: 'SP'
-      city:
-        title: 'City'
-        type: string
-        description: 'City'
-        example: 'Santo André'
-      street:
-        title: 'Street'
-        type: string
-        description: 'Street'
-        example: 'Rua Euclides de Figueiredo'
-      neighborhood:
-        title: 'Neighborhood'
-        type: string
-        description: 'Neighborhood'
-        example: 'Vila Lutécia'
-      location:
-        $ref: '#/definitions/Location'
-
-  Location:
-    type: object
-    title: 'Location'
-    description: 'Location object'
-    properties:
-      type:
-        title: 'Type'
-        type: string
-        description: 'Location type'
-        example: 'Point'
-      coordinates:
-        $ref: '#/definitions/Coordinates'
-
-  Coordinates:
-    type: object
-    title: 'Coordinates'
-    description: 'Coordinates object'
-    properties:
-      longitude:
-        title: 'Longitude'
-        type: string
-        description: 'Longitude geolocation'
-        example: '-46.5046571'
-      latitude:
-        title: 'Latitude'
-        type: string
-        description: 'Latitude geolocation'
-        example: '-23.6920031'
