@@ -19,10 +19,10 @@ public class ApiErrorResponse implements Serializable {
     @JsonProperty("code")
     private Integer code;
 
-    @JsonProperty("description")
-    private String description;
-
     @JsonProperty("message")
     private String message;
+
+    @JsonProperty("description")
+    private String description;
 
 }

@@ -10,13 +10,13 @@ public enum ResponseError {
     NOT_FOUND_EXCEPTION(404, "Not Found", "It was not possible to find the postcard informed");
 
     private final Integer statusCode;
-    private final String description;
     private final String message;
+    private final String description;
 
-    ResponseError(int statusCode, String description, String message) {
+    ResponseError(int statusCode, String message, String description) {
         this.statusCode = statusCode;
-        this.description = description;
         this.message = message;
+        this.description = description;
     }
 
 }

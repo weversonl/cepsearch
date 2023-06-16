@@ -38,12 +38,12 @@ public class DefaultControllerAdvice {
     public ApiErrorResponse onConstraintValidationException(ConstraintViolationException constraintViolations) {
 
         ApiErrorResponse apiErrorResponse = ApiErrorResponse.builder().code(BAD_REQUEST_EXCEPTION.getStatusCode())
-                .description(BAD_REQUEST_EXCEPTION.getDescription()).build();
+                .message(BAD_REQUEST_EXCEPTION.getMessage()).build();
 
         for (ConstraintViolation<?> violation : constraintViolations.getConstraintViolations()) {
 
-            String message = violation.getMessage();
-            apiErrorResponse.setMessage(message);
+            String description = violation.getMessage();
+            apiErrorResponse.setDescription(description);
 
         }
 

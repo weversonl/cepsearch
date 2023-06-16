@@ -14,8 +14,8 @@ public class ResponseErrorTest {
         ResponseError error = ResponseError.TECHNICAL_EXCEPTION;
 
         assertEquals(Integer.valueOf(500), error.getStatusCode());
-        assertEquals("Technical Exception", error.getDescription());
-        assertEquals("There were technical errors in application", error.getMessage());
+        assertEquals("Technical Exception", error.getMessage());
+        assertEquals("There were technical errors in application", error.getDescription());
     }
 
 }
