@@ -1,12 +1,12 @@
 package com.cepsearch.service;
 
-import com.cepsearch.dto.request.PostalCodeRequest;
-import com.cepsearch.dto.response.PostalCodeResponse;
+import com.cepsearch.domain.dto.PostalCodeDTO;
+import com.cepsearch.domain.response.PostalCodeResponse;
 
 import javax.validation.Valid;
 
 public interface PostalCodeService {
 
-    PostalCodeResponse findAddressByCep(@Valid PostalCodeRequest request);
+    PostalCodeResponse findAddressByCep(@Valid PostalCodeDTO request);
 
 }

@@ -1,6 +1,6 @@
 package com.cepsearch.exception.impl;
 
-import com.cepsearch.utils.message.ResponseError;
+import com.cepsearch.enums.ResponseError;
 
 import java.io.Serializable;
 

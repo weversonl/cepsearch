@@ -13,23 +13,29 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
-import static com.cepsearch.utils.message.ResponseError.*;
+import static com.cepsearch.enums.ResponseError.*;
 
 @ControllerAdvice
 public class DefaultControllerAdvice {
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ApiErrorResponse> handleNotFoundException(NotFoundException e) {
+    public ResponseEntity<ApiErrorResponse> handleNotFoundException() {
         return ResponseEntity.status(NOT_FOUND_EXCEPTION.getStatusCode())
-                .body(ApiErrorResponse.builder().code(NOT_FOUND_EXCEPTION.getStatusCode()).description(NOT_FOUND_EXCEPTION.getDescription())
-                        .message(NOT_FOUND_EXCEPTION.getMessage()).build());
+                .body(ApiErrorResponse.builder()
+                        .code(NOT_FOUND_EXCEPTION.getStatusCode())
+                        .description(NOT_FOUND_EXCEPTION.getDescription())
+                        .message(NOT_FOUND_EXCEPTION.getMessage())
+                        .build());
     }
 
     @ExceptionHandler(TechnicalException.class)
-    public ResponseEntity<ApiErrorResponse> handleTechnicalException(TechnicalException e) {
+    public ResponseEntity<ApiErrorResponse> handleTechnicalException() {
         return ResponseEntity.status(TECHNICAL_EXCEPTION.getStatusCode())
-                .body(ApiErrorResponse.builder().code(TECHNICAL_EXCEPTION.getStatusCode()).description(TECHNICAL_EXCEPTION.getDescription())
-                        .message(TECHNICAL_EXCEPTION.getMessage()).build());
+                .body(ApiErrorResponse.builder()
+                        .code(TECHNICAL_EXCEPTION.getStatusCode())
+                        .description(TECHNICAL_EXCEPTION.getDescription())
+                        .message(TECHNICAL_EXCEPTION.getMessage())
+                        .build());
     }
 
     @ResponseBody
@@ -37,14 +43,14 @@ public class DefaultControllerAdvice {
     @ExceptionHandler(ConstraintViolationException.class)
     public ApiErrorResponse onConstraintValidationException(ConstraintViolationException constraintViolations) {
 
-        ApiErrorResponse apiErrorResponse = ApiErrorResponse.builder().code(BAD_REQUEST_EXCEPTION.getStatusCode())
-                .message(BAD_REQUEST_EXCEPTION.getMessage()).build();
+        ApiErrorResponse apiErrorResponse = ApiErrorResponse.builder()
+                .code(BAD_REQUEST_EXCEPTION.getStatusCode())
+                .message(BAD_REQUEST_EXCEPTION.getMessage())
+                .build();
 
         for (ConstraintViolation<?> violation : constraintViolations.getConstraintViolations()) {
-
             String description = violation.getMessage();
             apiErrorResponse.setDescription(description);
-
         }
 
         return apiErrorResponse;

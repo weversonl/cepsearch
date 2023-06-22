@@ -1,6 +1,6 @@
 package com.cepsearch.client;
 
-import com.cepsearch.dto.response.PostalCodeResponse;
+import com.cepsearch.domain.response.PostalCodeResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

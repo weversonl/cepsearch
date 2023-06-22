@@ -1,6 +1,6 @@
 package com.cepsearch.repository;
 
-import com.cepsearch.dto.response.PostalCodeResponse;
+import com.cepsearch.domain.response.PostalCodeResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -91,15 +91,13 @@ public class RedisClientRepositoryTest {
 
     @Test
     public void testFindById_Exists() {
-        // Arrange
+
         String postalCode = "12345678";
         PostalCodeResponse response = new PostalCodeResponse();
         when(crudRepository.findById(postalCode)).thenReturn(Optional.of(response));
 
-        // Act
         Optional<PostalCodeResponse> result = redisClientRepository.findById(postalCode);
 
-        // Assert
         assertTrue(result.isPresent());
         assertEquals(response, result.get());
         verify(crudRepository, times(1)).findById(postalCode);
@@ -107,28 +105,24 @@ public class RedisClientRepositoryTest {
 
     @Test
     public void testFindById_NotExists() {
-        // Arrange
+
         String postalCode = "12345678";
         when(crudRepository.findById(postalCode)).thenReturn(Optional.empty());
 
-        // Act
         Optional<PostalCodeResponse> result = redisClientRepository.findById(postalCode);
 
-        // Assert
         assertFalse(result.isPresent());
         verify(crudRepository, times(1)).findById(postalCode);
     }
 
     @Test
     public void testSave() {
-        // Arrange
+
         PostalCodeResponse response = new PostalCodeResponse();
         when(crudRepository.save(response)).thenReturn(response);
 
-        // Act
         PostalCodeResponse result = redisClientRepository.save(response);
 
-        // Assert
         assertEquals(response, result);
         verify(crudRepository, times(1)).save(response);
     }

@@ -1,6 +1,6 @@
 package com.cepsearch.controller;
 
-import com.cepsearch.dto.response.PostalCodeResponse;
+import com.cepsearch.domain.response.PostalCodeResponse;
 import com.cepsearch.service.impl.PostalCodeServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;

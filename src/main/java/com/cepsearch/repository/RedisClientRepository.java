@@ -1,6 +1,6 @@
 package com.cepsearch.repository;
 
-import com.cepsearch.dto.response.PostalCodeResponse;
+import com.cepsearch.domain.response.PostalCodeResponse;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

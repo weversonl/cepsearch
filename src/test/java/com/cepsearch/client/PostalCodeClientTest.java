@@ -1,7 +1,7 @@
 package com.cepsearch.client;
 
-import com.cepsearch.dto.request.PostalCodeRequest;
-import com.cepsearch.dto.response.PostalCodeResponse;
+import com.cepsearch.domain.dto.PostalCodeDTO;
+import com.cepsearch.domain.response.PostalCodeResponse;
 import com.cepsearch.repository.RedisClientRepository;
 import com.cepsearch.service.impl.PostalCodeServiceImpl;
 import feign.FeignException;
@@ -35,12 +35,12 @@ public class PostalCodeClientTest {
 
         PostalCodeResponse expectedResponse = PostalCodeResponse.builder().cep("12345678").city("Sao Paulo").state("SP").build();
 
-        PostalCodeRequest postalCodeRequest = new PostalCodeRequest("12345678");
+        PostalCodeDTO postalCodeDTO = new PostalCodeDTO("12345678");
 
         when(redisClientRepository.findById(anyString())).thenReturn(Optional.empty());
         when(postalCodeClient.findByCep(anyString())).thenReturn(expectedResponse);
 
-        PostalCodeResponse actualResponse = postalCodeService.findAddressByCep(postalCodeRequest);
+        PostalCodeResponse actualResponse = postalCodeService.findAddressByCep(postalCodeDTO);
 
         assertEquals(expectedResponse, actualResponse);
     }

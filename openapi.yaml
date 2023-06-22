@@ -10,27 +10,27 @@ info:
   version: 1.1.0
   x-technical-owner: Weverson Lemos
 servers:
-- url: http://localhost:8080/api/cep
+  - url: http://localhost:8080/api/cep
 tags:
-- name: Address search by postal code
-  description: This microservice is responsible for consuming an external API and
-    getting addresses by postal code
+  - name: Address search by postal code
+    description: This microservice is responsible for consuming an external API and
+      getting addresses by postal code
 paths:
   /{cep}:
     get:
       tags:
-      - Address search by postal code
+        - Address search by postal code
       summary: getting addresses
       description: This microservice is responsible for consuming an external API
         and getting addresses by postal code
       operationId: cepsearchGet
       parameters:
-      - name: cep
-        in: path
-        description: The postal code that will be fetched from the API
-        required: true
-        schema:
-          type: string
+        - name: cep
+          in: path
+          description: The postal code that will be fetched from the API
+          required: true
+          schema:
+            type: string
       responses:
         200:
           description: Successful Request

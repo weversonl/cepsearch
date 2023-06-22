@@ -1,8 +1,8 @@
 package com.cepsearch.service.impl;
 
 import com.cepsearch.client.PostalCodeClient;
-import com.cepsearch.dto.request.PostalCodeRequest;
-import com.cepsearch.dto.response.PostalCodeResponse;
+import com.cepsearch.domain.dto.PostalCodeDTO;
+import com.cepsearch.domain.response.PostalCodeResponse;
 import com.cepsearch.exception.impl.NotFoundException;
 import com.cepsearch.exception.impl.TechnicalException;
 import com.cepsearch.repository.RedisClientRepository;
@@ -16,7 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import java.util.Optional;
 
-import static com.cepsearch.utils.message.ResponseError.NOT_FOUND_EXCEPTION;
+import static com.cepsearch.enums.ResponseError.NOT_FOUND_EXCEPTION;
 
 @Slf4j
 @Service
@@ -28,7 +28,8 @@ public class PostalCodeServiceImpl implements PostalCodeService {
     private final RedisClientRepository redisClientRepository;
 
     @Override
-    public PostalCodeResponse findAddressByCep(@Valid PostalCodeRequest request) {
+    public PostalCodeResponse findAddressByCep(@Valid PostalCodeDTO request) {
+
         try {
 
             if (request.getPostalCode().contains("-"))
