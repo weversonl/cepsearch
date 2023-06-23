@@ -13,6 +13,7 @@ services:
       HOST: cepsearch-cache
     networks:
       - cs-be
+    mem_limit: 512m
 
   cepsearch-cache:
     image: redis:latest
@@ -22,7 +23,37 @@ services:
       - "6379:6379"
     networks:
       - cs-be
+    mem_limit: 512m
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: always
+    ports:
+      - "9090:9090"
+    networks:
+      - cs-be
+    volumes:
+      - ./src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    mem_limit: 256m
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - cs-be
+    volumes:
+      - grafana-data:/var/lib/grafana
+    mem_limit: 256m
 
 networks:
   cs-be:
     driver: bridge
+
+volumes:
+  grafana-data:

@@ -18,6 +18,34 @@ springdoc:
     path: /swagger-ui.html
     enabled: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - metrics
+          - prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+  info:
+    env:
+      enabled: true
+
+info:
+  app: cepsearch
+  developer: weversonl
+  github: https://github.com/WeversonL/cepsearch
+  linkedin: https://www.linkedin.com/in/weversonlemos/
+  usedTools:
+    - Java
+    - SpringBoot
+    - Redis
+    - Actuator
+
 logging:
   level:
     com:
