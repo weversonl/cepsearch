@@ -28,7 +28,11 @@ developed to practice programming and to study.
 
         docker-compose up -d
 
-3. Make a search by sending the desired zip code as QueryParam, in your desired client. Below I leave an example curl
+3. If you want to view the interactive swagger, access the url below in your browser
+
+        http://localhost:8080/api/swagger-ui/index.html#/
+
+4. Make a search by sending the desired zip code as QueryParam, in your desired client. Below I leave an example curl
 
         curl --location --request GET 'localhost:8080/api/cep/17560-246'
 

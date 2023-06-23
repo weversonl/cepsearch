@@ -13,6 +13,11 @@ server:
   servlet:
     context-path: /api
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
 logging:
   level:
     com:
