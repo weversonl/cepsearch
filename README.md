@@ -6,6 +6,14 @@ API developed for consumption of BrasilAPI. In it, OpenFeign was used to integra
 for caching, Redis, was also used. Along with other technologies like Docker and the docker-compose plugin. The API also relies on swagger-ui for documentation and easy visualization of how the API works. It also uses Actuator and Prometheus, which integrate with Grafana to view metrics and reports in graphs. Was
 developed to practice programming and to study.
 
+## Technologies
+
+- Java
+- Spring Boot
+- Redis
+- Grafana / Actuator / Prometheus
+- Docker
+
 ## Screenshot
 
 ![swagger_screenshot](assets/swagger-ui.png)

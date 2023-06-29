@@ -18,6 +18,7 @@ import static com.cepsearch.enums.ResponseError.*;
 @ControllerAdvice
 public class DefaultControllerAdvice {
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ApiErrorResponse> handleNotFoundException() {
         return ResponseEntity.status(NOT_FOUND_EXCEPTION.getStatusCode())
@@ -28,6 +29,7 @@ public class DefaultControllerAdvice {
                         .build());
     }
 
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(TechnicalException.class)
     public ResponseEntity<ApiErrorResponse> handleTechnicalException() {
         return ResponseEntity.status(TECHNICAL_EXCEPTION.getStatusCode())
