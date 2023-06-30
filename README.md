@@ -3,7 +3,9 @@
 ## About
 
 API developed for consumption of BrasilAPI. In it, OpenFeign was used to integrate REST Clients. An in-memory database
-for caching, Redis, was also used. Along with other technologies like Docker and the docker-compose plugin. The API also relies on swagger-ui for documentation and easy visualization of how the API works. It also uses Actuator and Prometheus, which integrate with Grafana to view metrics and reports in graphs. Was
+for caching, Redis, was also used. Along with other technologies like Docker and the docker-compose plugin. The API also
+relies on swagger-ui for documentation and easy visualization of how the API works. It also uses Actuator and
+Prometheus, which integrate with Grafana to view metrics and reports in graphs. Was
 developed to practice programming and to study.
 
 ## Technologies
@@ -50,11 +52,13 @@ developed to practice programming and to study.
 
 ![graphana_screenshot](assets/grafana-dashboard.png)
 
-1. To monitor using Grafana, you can access the URL below. Using admin/admin credentials. [They can be changed after the first login]
+1. To monitor using Grafana, you can access the URL below. Using admin/admin
+   credentials. [They can be changed after the first login]
 
         http://localhost:3000/
 
-2. By developer settings, there are no profiles created or dashboards created. For this, you can configure it manually by following below. Getting started with database setup
+2. By developer settings, there are no profiles created or dashboards created. For this, you can configure it manually
+   by following below. Getting started with database setup
 
         Menu -> Connections -> Data Sources -> Add new data source -> Prometheus
 
@@ -69,7 +73,7 @@ developed to practice programming and to study.
         Add this URL: https://grafana.com/grafana/dashboards/4701-jvm-micrometer/
 
         Load
-        
+
 ### With Prometheus
 
 ![prometheus_screenshot](assets/prometheus.png)
