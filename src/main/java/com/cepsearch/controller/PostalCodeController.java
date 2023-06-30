@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.cepsearch.util.PostalCodeUtils.cleanPostalCode;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping
@@ -22,7 +24,7 @@ public class PostalCodeController {
     @GetMapping(value = "/cep/{cep}")
     @Operation(summary = "getting addresses", tags = "Address search by postal code")
     public PostalCodeResponse findAddress(@PathVariable("cep") String cep) {
-        return postalCodeService.findAddressByCep(new PostalCodeDTO(cep.trim()));
+        return postalCodeService.findAddressByCep(new PostalCodeDTO(cleanPostalCode(cep)));
     }
 
 }

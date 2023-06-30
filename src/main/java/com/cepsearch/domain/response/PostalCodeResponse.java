@@ -5,9 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
-import org.springframework.data.redis.core.index.Indexed;
 
 import java.io.Serializable;
 
@@ -22,8 +20,6 @@ public class PostalCodeResponse implements Serializable {
 
     private static final long serialVersionUID = 6583635153965709585L;
 
-    @Id
-    @Indexed
     @JsonProperty("cep")
     private String cep;
 

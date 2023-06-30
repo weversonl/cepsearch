@@ -9,4 +9,4 @@ scrape_configs:
     metrics_path: /api/actuator/prometheus
 
     static_configs:
-      - targets: ['cepsearch-api:8080']
+      - targets: [ 'cepsearch-api:8080' ]

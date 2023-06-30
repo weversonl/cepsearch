@@ -12,11 +12,13 @@ import org.springframework.data.redis.core.RedisTemplate;
 @EnableCaching
 public class RedisConfig {
 
-    @Value("${spring.redis.host}")
-    private String host;
+    private final String host;
+    private final Integer port;
 
-    @Value("${spring.redis.port}")
-    private Integer port;
+    public RedisConfig(@Value("${spring.redis.host}") String host, @Value("${spring.redis.port}") Integer port) {
+        this.host = host;
+        this.port = port;
+    }
 
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
