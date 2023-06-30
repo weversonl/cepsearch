@@ -1,30 +1,30 @@
 package com.cepsearch.util.message;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
-public class ValidationMessagesTest {
+class ValidationMessagesTest {
 
     @Test
-    public void testInvalidPostalCodeMessage() {
+    @DisplayName("Test invalid postal code message")
+    void testInvalidPostalCodeMessage() {
         String message = ValidationMessages.INVALID_POSTAL_CODE;
         assertEquals("The postal code sent is invalid", message);
     }
 
     @Test
-    public void testInvalidPostalCodeDescription() {
+    @DisplayName("Test invalid postal code description")
+    void testInvalidPostalCodeDescription() {
         String description = ValidationMessages.INVALID_POSTAL_CODE_DESCRIPTION;
         assertEquals("Custom validation annotation for postal codes", description);
     }
 
     @Test
-    public void testValidPostalCodeExample() {
+    @DisplayName("Test valid postal code example")
+    void testValidPostalCodeExample() {
         String example = ValidationMessages.VALID_POSTAL_CODE_EXAMPLE;
         assertEquals("12345-678", example);
     }
-
 }

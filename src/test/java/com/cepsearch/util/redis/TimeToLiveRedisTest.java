@@ -1,21 +1,15 @@
 package com.cepsearch.util.redis;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
-public class TimeToLiveRedisTest {
+class TimeToLiveRedisTest {
 
     @Test
-    public void testRescueTimeToLive() {
-
-        int twentyFourHoursInSeconds = 86400;
-        int time = TimeToLiveRedis.TWENTY_FOUR_HRS;
-
-        assertEquals(twentyFourHoursInSeconds, time);
+    @DisplayName("Test Redis Twenty Four Hours Constant")
+    void testTwentyFourHrsConstant() {
+        assertEquals(86400, TimeToLiveRedis.TWENTY_FOUR_HRS);
     }
-
 }

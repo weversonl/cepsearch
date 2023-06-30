@@ -1,16 +1,16 @@
 package com.cepsearch.domain.response;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
-public class CoordinatesTest {
+@DisplayName("Coordinates Test")
+class CoordinatesTest {
 
     @Test
-    public void testCreateCoordinates() {
+    @DisplayName("Test create Coordinates object")
+    void testCreateCoordinates() {
         String longitude = "123.456";
         String latitude = "-12.345";
 

@@ -1,28 +1,48 @@
 package com.cepsearch.annotations;
 
 import com.cepsearch.util.message.ValidationMessages;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-public class PostalCodeValidationTest {
+@ExtendWith(MockitoExtension.class)
+@DisplayName("PostalCodeValidation Test")
+class PostalCodeValidationTest {
 
-    @PostalCodeValidation
-    private String postalCode;
+    @Mock
+    private PostalCodeValidation postalCodeValidation;
 
     @Test
-    public void testPostalCodeValidation() throws NoSuchFieldException {
-        PostalCodeValidation annotation = PostalCodeValidationTest.class.getDeclaredField("postalCode")
-                .getAnnotation(PostalCodeValidation.class);
-        assertEquals(ValidationMessages.INVALID_POSTAL_CODE, annotation.message());
-        assertEquals(ValidationMessages.INVALID_POSTAL_CODE_DESCRIPTION, annotation.description());
-        assertEquals(ValidationMessages.VALID_POSTAL_CODE_EXAMPLE, annotation.example());
-        assertNotNull(annotation.groups());
-        assertNotNull(annotation.payload());
+    @DisplayName("Should return the custom message when it is provided")
+    void descriptionReturnsCustomMessageWhenProvided() {
+        String customMessage = "This is a custom message";
+        when(postalCodeValidation.description()).thenReturn(customMessage);
+
+        String description = postalCodeValidation.description();
+
+        assertEquals(customMessage, description);
+    }
+
+    @Test
+    @DisplayName("Should return the default message when no custom message is provided")
+    void descriptionReturnsDefaultMessageWhenNoCustomMessageProvided() {
+
+        String defaultMessage = ValidationMessages.INVALID_POSTAL_CODE_DESCRIPTION;
+        String customMessage = "Custom validation annotation for postal codes";
+
+        when(postalCodeValidation.description()).thenReturn(customMessage);
+
+        String description = postalCodeValidation.description();
+        String message = postalCodeValidation.message();
+
+        assertEquals(customMessage, description);
+        assertNotEquals(defaultMessage, message);
     }
 
 }

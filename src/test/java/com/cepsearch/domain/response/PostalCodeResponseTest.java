@@ -1,16 +1,16 @@
 package com.cepsearch.domain.response;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
-public class PostalCodeResponseTest {
+@DisplayName("PostalCodeResponse Test")
+class PostalCodeResponseTest {
 
     @Test
-    public void testCreatePostalCodeResponse() {
+    @DisplayName("Test create Postal Code response")
+    void testCreatePostalCodeResponse() {
         String cep = "12345-678";
         String state = "Sample State";
         String city = "Sample City";

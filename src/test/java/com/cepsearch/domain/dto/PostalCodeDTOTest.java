@@ -1,59 +1,61 @@
 package com.cepsearch.domain.dto;
 
 import com.cepsearch.annotations.impl.PostalCodeValidationImpl;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.validation.ConstraintValidatorContext;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(MockitoJUnitRunner.class)
-public class PostalCodeDTOTest {
+@ExtendWith(MockitoExtension.class)
+@DisplayName("PostalCodeDTO Test")
+class PostalCodeDTOTest {
+
+    @Mock
+    private ConstraintValidatorContext constraintValidatorContext;
 
     @Test
-    public void testConstructorAndGetters() {
-        String postalCode = "12345678";
-        PostalCodeDTO request = new PostalCodeDTO(postalCode);
-        assertEquals(postalCode, request.getPostalCode());
+    @DisplayName("Should pass validation for a valid postal code")
+    void isValidPostalCode() {
+        PostalCodeDTO postalCodeDTO = PostalCodeDTO.builder()
+                .postalCode("12345-678")
+                .build();
+
+        PostalCodeValidationImpl postalCodeValidation = new PostalCodeValidationImpl();
+        boolean isValid = postalCodeValidation.isValid(postalCodeDTO.getPostalCode(), constraintValidatorContext);
+
+        assertTrue(isValid);
     }
 
     @Test
-    public void testSetters() {
-        PostalCodeDTO request = new PostalCodeDTO();
-        String postalCode = "12345678";
-        request.setPostalCode(postalCode);
-        assertEquals(postalCode, request.getPostalCode());
+    @DisplayName("Should fail validation for an invalid postal code")
+    void isInvalidPostalCode() {
+        PostalCodeDTO postalCodeDTO = PostalCodeDTO.builder()
+                .postalCode("123456789")
+                .build();
+
+        PostalCodeValidationImpl postalCodeValidation = new PostalCodeValidationImpl();
+        boolean isValid = postalCodeValidation.isValid(postalCodeDTO.getPostalCode(), constraintValidatorContext);
+
+        assertFalse(isValid);
     }
 
     @Test
-    public void testInvalidPostalCode() {
+    @DisplayName("Should fail validation for a blank postal code")
+    void isBlankPostalCode() {
+        PostalCodeDTO postalCodeDTO = PostalCodeDTO.builder()
+                .postalCode("")
+                .build();
 
-        PostalCodeValidationImpl validator = mock(PostalCodeValidationImpl.class);
-        ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
-        PostalCodeDTO request = new PostalCodeDTO("invalid");
+        PostalCodeValidationImpl postalCodeValidation = new PostalCodeValidationImpl();
+        boolean isValid = postalCodeValidation.isValid(postalCodeDTO.getPostalCode(), constraintValidatorContext);
 
-        when(validator.isValid(request.getPostalCode(), context)).thenReturn(false);
-
-        boolean valid = validator.isValid(request.getPostalCode(), context);
-
-        assertFalse(valid);
-    }
-
-    @Test
-    public void testValidPostalCode() {
-        PostalCodeDTO request = new PostalCodeDTO("12345678");
-        assertTrue(validatePostalCode(request));
-    }
-
-    private boolean validatePostalCode(PostalCodeDTO request) {
-        PostalCodeValidationImpl validator = mock(PostalCodeValidationImpl.class);
-        ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
-        when(validator.isValid(request.getPostalCode(), context)).thenReturn(true);
-        return validator.isValid(request.getPostalCode(), context);
+        assertFalse(isValid);
     }
 
 }

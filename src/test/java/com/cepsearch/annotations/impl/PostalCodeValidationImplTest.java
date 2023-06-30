@@ -1,50 +1,50 @@
 package com.cepsearch.annotations.impl;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintValidatorContext;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
-@RunWith(MockitoJUnitRunner.class)
-public class PostalCodeValidationImplTest {
+@DisplayName("PostalCodeValidationImpl Test")
+class PostalCodeValidationImplTest {
 
-    private final PostalCodeValidationImpl validator = new PostalCodeValidationImpl();
+    private PostalCodeValidationImpl postalCodeValidation;
 
-    @Test
-    public void testIsValid_ValidPostalCode() {
-        String validPostalCode = "12345678";
-        assertTrue(validator.isValid(validPostalCode, mockConstraintValidatorContext()));
+    @BeforeEach
+    void setUp() {
+        postalCodeValidation = new PostalCodeValidationImpl();
     }
 
     @Test
-    public void testIsValid_NullPostalCode() {
-        assertFalse(validator.isValid(null, mockConstraintValidatorContext()));
+    @DisplayName("Should return true when the postal code matches the defined pattern")
+    void isValidWhenPostalCodeMatchesPattern() {
+        ConstraintValidatorContext constraintValidatorContext = mock(ConstraintValidatorContext.class);
+        assertTrue(postalCodeValidation.isValid("12345-678", constraintValidatorContext));
+        assertTrue(postalCodeValidation.isValid("12345678", constraintValidatorContext));
     }
 
     @Test
-    public void testIsValid_EmptyPostalCode() {
-        String emptyPostalCode = "";
-        assertFalse(validator.isValid(emptyPostalCode, mockConstraintValidatorContext()));
+    @DisplayName("Should return false when the postal code is blank")
+    void isValidWhenPostalCodeIsBlank() {
+        ConstraintValidatorContext constraintValidatorContext = mock(ConstraintValidatorContext.class);
+        boolean result = postalCodeValidation.isValid("", constraintValidatorContext);
+        assertFalse(result);
     }
 
     @Test
-    public void testIsValid_PostalCodeWithDash() {
-        String postalCodeWithDash = "12345-678";
-        assertTrue(validator.isValid(postalCodeWithDash, mockConstraintValidatorContext()));
-    }
+    @DisplayName("Should return false when the postal code does not match the defined pattern")
+    void isValidWhenPostalCodeDoesNotMatchPattern() {
+        ConstraintValidatorContext constraintValidatorContext = mock(ConstraintValidatorContext.class);
 
-    @Test
-    public void testIsValid_PostalCodeExceedingMaxLength() {
-        String postalCodeExceedingMaxLength = "123456789";
-        assertFalse(validator.isValid(postalCodeExceedingMaxLength, mockConstraintValidatorContext()));
-    }
-
-    private ConstraintValidatorContext mockConstraintValidatorContext() {
-        return null;
+        assertFalse(postalCodeValidation.isValid("12345", constraintValidatorContext));
+        assertFalse(postalCodeValidation.isValid("123456789", constraintValidatorContext));
+        assertFalse(postalCodeValidation.isValid("12345-1234", constraintValidatorContext));
+        assertFalse(postalCodeValidation.isValid("012345678", constraintValidatorContext));
     }
 
 }
