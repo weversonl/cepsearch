@@ -117,5 +117,5 @@ class ApiErrorResponseTest {
         assertNull(response.getMessage());
         assertNull(response.getDescription());
     }
-    
+
 }

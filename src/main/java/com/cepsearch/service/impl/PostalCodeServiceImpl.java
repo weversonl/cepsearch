@@ -36,7 +36,6 @@ public class PostalCodeServiceImpl implements PostalCodeService {
             throw new NotFoundException();
         } catch (Exception e) {
             log.error("error on service: PostalCodeService -> " + e);
-            log.error("{0}", e.getCause());
             throw new TechnicalException();
         }
     }
