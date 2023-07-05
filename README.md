@@ -9,6 +9,9 @@ Prometheus, which integrate with Grafana to view metrics and reports in graphs. 
 developed to practice programming and to study. Everything was integrated with the github workflow, to generate the
 docker image build and send them to dockerhub
 
+**You can access the API in production through the endpoint**
+**https://cepsearch.up.railway.app/api/cep/{any-postalcode}**
+
 ## Technologies
 
 - Java
