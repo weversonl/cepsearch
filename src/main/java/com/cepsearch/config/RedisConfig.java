@@ -14,10 +14,14 @@ public class RedisConfig {
 
     private final String host;
     private final Integer port;
+    private final String username;
+    private final String password;
 
-    public RedisConfig(@Value("${spring.redis.host}") String host, @Value("${spring.redis.port}") Integer port) {
+    public RedisConfig(@Value("${spring.redis.host}") String host, @Value("${spring.redis.port}") Integer port, @Value("${spring.redis.username}") String username, @Value("${spring.redis.password}") String password) {
         this.host = host;
         this.port = port;
+        this.username = username;
+        this.password = password;
     }
 
     @Bean
@@ -25,6 +29,8 @@ public class RedisConfig {
         RedisStandaloneConfiguration redisConfig = new RedisStandaloneConfiguration();
         redisConfig.setHostName(host);
         redisConfig.setPort(port);
+        redisConfig.setUsername(username);
+        redisConfig.setPassword(password);
         return new JedisConnectionFactory(redisConfig);
     }
 
