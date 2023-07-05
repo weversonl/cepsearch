@@ -1,14 +1,18 @@
 package com.cepsearch.domain.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @RedisHash(value = "Location")
 public class Location implements Serializable {
 
