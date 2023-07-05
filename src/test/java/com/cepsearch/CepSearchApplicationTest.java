@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-@TestPropertySource(properties = "HOST=testhost")
+@TestPropertySource(properties = "REDIS_HOST=testhost")
 class CepSearchApplicationTest {
 
     @Autowired

@@ -10,7 +10,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      HOST: cepsearch-cache
+      REDIS_HOST: cepsearch-cache
     networks:
       - cs-be
     mem_limit: 512m
