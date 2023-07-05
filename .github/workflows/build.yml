@@ -1,0 +1,44 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Configure JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '1.8' 
+
+      - name: Exec maven tests
+        run: mvn test
+      
+      - name: Docker Login
+        uses: docker/login-action@v2.2.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
+    
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v4.1.1
+        with:
+          context: .
+          file: .
+          push: true
+          tags: |
+            weversonlemos/cepsearch:v1
+            weversonlemos/cepsearch:latest
