@@ -6,7 +6,7 @@ API developed for consumption of BrasilAPI. In it, OpenFeign was used to integra
 for caching, Redis, was also used. Along with other technologies like Docker and the docker-compose plugin. The API also
 relies on swagger-ui for documentation and easy visualization of how the API works. It also uses Actuator and
 Prometheus, which integrate with Grafana to view metrics and reports in graphs. Was
-developed to practice programming and to study.
+developed to practice programming and to study. Everything was integrated with the github workflow, to generate the docker image build and send them to dockerhub
 
 ## Technologies
 
@@ -15,6 +15,7 @@ developed to practice programming and to study.
 - Redis
 - Grafana / Actuator / Prometheus
 - Docker
+- Github Workflow [CI/CD]
 
 ## Screenshot
 
