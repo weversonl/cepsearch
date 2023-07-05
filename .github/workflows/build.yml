@@ -31,9 +31,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASS }}
     
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-
       - name: Build and push Docker images
         uses: docker/build-push-action@v4.1.1
         with:
