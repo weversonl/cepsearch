@@ -21,6 +21,7 @@ class CepSearchApplicationTest {
 
     @Test
     void contextLoads() {
+        CepSearchApplication.main(new String[] {});
         assertNotNull(applicationContext, "Application context should not be null");
     }
 
