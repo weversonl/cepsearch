@@ -1,6 +1,6 @@
-# cepsearch
-
-## About
+<h1 align="center">
+   CEPSEARCH 
+</h1>
 
 API developed for consumption of BrasilAPI. In it, OpenFeign was used to integrate REST Clients. An in-memory database
 for caching, Redis, was also used. Along with other technologies like Docker and the docker-compose plugin. The API also
@@ -14,12 +14,28 @@ docker image build and send them to dockerhub
 
 ## Technologies
 
-- Java
-- Spring Boot
-- Redis
-- Grafana / Actuator / Prometheus
-- Docker
-- Github Workflow [CI/CD]
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Spring MVC](https://docs.spring.io/spring-framework/reference/web/webmvc.html)
+- [Spring Cloud](https://spring.io/projects/spring-cloud)
+- [SpringDoc OpenAPI 3](https://springdoc.org/)
+- [Redis](https://redis.io/docs/about/)
+- [Actuator](https://spring.io/guides/gs/actuator-service/)
+- [Prometheus](https://prometheus.io/docs/prometheus/latest/getting_started/)
+- [Grafana](https://grafana.com/docs/grafana/latest/)
+- [Docker](https://docs.docker.com/get-started/)
+- [Github Workflow](https://docs.github.com/en/actions/using-workflows)
+
+## Practices adopted
+
+- SOLID
+- API REST
+- Dependency Injection
+- Automated tests
+- Containerization with docker
+- Data Caching
+- Error response handling
+- Full API monitoring
+- Automatic Swagger Generation with OpenAPI 3
 
 ## Screenshot
 
@@ -30,24 +46,24 @@ docker image build and send them to dockerhub
 1. [Docker](https://docs.docker.com/engine/install/)
 2. [Docker-compose](https://docs.docker.com/compose/)
 
-## Get Started
+## Get started
 
-### Running the application with docker-compose
-
-1. Clone the repository or download the source code
+0. Clone git repository
 
         git clone https://github.com/WeversonL/cepsearch.git
         cd cepsearch
 
-2. Start with docker-compose
+### Running the application with docker-compose
+
+1. Start with docker-compose
 
         docker-compose up -d
 
-3. If you want to view the interactive swagger, access the url below in your browser
+2. If you want to view the interactive swagger, access the url below in your browser
 
         http://localhost:8080/api/swagger-ui/index.html#/
 
-4. Make a search by sending the desired zip code as QueryParam, in your desired client. Below I leave an example curl
+3. Make a search by sending the desired zip code as QueryParam, in your desired client. Below I leave an example curl
 
         curl --location --request GET 'localhost:8080/api/cep/17560-246'
 
@@ -103,11 +119,4 @@ docker image build and send them to dockerhub
 
 ## License
 
-`cepsearch` is released under the [GNU General Public License, Version 2](LICENSE)
-
-        Copyright (C) 2022 Weverson Lemos
-
-        This program is free software; you can redistribute it and/or
-        modify it under the terms of the GNU General Public License
-        as published by the Free Software Foundation; either version 2
-        of the License, or (at your option) any later version
+`cepsearch` is [MIT licensed](LICENSE).
