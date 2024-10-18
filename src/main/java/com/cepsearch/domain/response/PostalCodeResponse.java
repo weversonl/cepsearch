@@ -9,7 +9,7 @@ import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 
-import static com.cepsearch.util.redis.TimeToLiveRedis.TWENTY_FOUR_HRS;
+import static com.cepsearch.constants.Constants.TWENTY_FOUR_HRS;
 
 @Data
 @Builder

@@ -1,6 +1,6 @@
 package com.cepsearch.annotations;
 
-import com.cepsearch.util.message.ValidationMessages;
+import com.cepsearch.constants.Constants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,7 +33,7 @@ class PostalCodeValidationTest {
     @DisplayName("Should return the default message when no custom message is provided")
     void descriptionReturnsDefaultMessageWhenNoCustomMessageProvided() {
 
-        String defaultMessage = ValidationMessages.INVALID_POSTAL_CODE_DESCRIPTION;
+        String defaultMessage = Constants.INVALID_POSTAL_CODE_DESCRIPTION;
         String customMessage = "Custom validation annotation for postal codes";
 
         when(postalCodeValidation.description()).thenReturn(customMessage);

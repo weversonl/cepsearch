@@ -32,10 +32,10 @@ public class PostalCodeServiceImpl implements PostalCodeService {
         try {
             return postalCodeClient.findByCep(request.getPostalCode());
         } catch (FeignException.NotFound e) {
-            log.error(NOT_FOUND_EXCEPTION.getMessage());
+            log.error("{} CEP {}", NOT_FOUND_EXCEPTION.getMessage(), request.getPostalCode());
             throw new NotFoundException();
         } catch (Exception e) {
-            log.error("error on service: PostalCodeService -> " + e);
+            log.error("error on service: PostalCodeService -> {}", String.valueOf(e));
             throw new TechnicalException();
         }
     }

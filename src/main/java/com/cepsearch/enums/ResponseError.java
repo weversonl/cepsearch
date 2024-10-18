@@ -1,14 +1,14 @@
 package com.cepsearch.enums;
 
-import com.cepsearch.util.message.ExceptionMessages;
+import com.cepsearch.constants.Constants;
 import lombok.Getter;
 
 @Getter
 public enum ResponseError {
 
-    TECHNICAL_EXCEPTION(500, ExceptionMessages.TECHNICAL_EXCEPTION, ExceptionMessages.TECHNICAL_DESCRIPTION),
-    BAD_REQUEST_EXCEPTION(400, ExceptionMessages.BAD_REQUEST_EXCEPTION, null),
-    NOT_FOUND_EXCEPTION(404, ExceptionMessages.NOT_FOUND_EXCEPTION, ExceptionMessages.NOT_FOUND_DESCRIPTION);
+    TECHNICAL_EXCEPTION(500, Constants.TECHNICAL_EXCEPTION, Constants.TECHNICAL_DESCRIPTION),
+    BAD_REQUEST_EXCEPTION(400, Constants.BAD_REQUEST_EXCEPTION, null),
+    NOT_FOUND_EXCEPTION(404, Constants.NOT_FOUND_EXCEPTION, Constants.NOT_FOUND_DESCRIPTION);
 
     private final Integer statusCode;
     private final String message;
@@ -22,14 +22,6 @@ public enum ResponseError {
 
     public int getStatusCode() {
         return statusCode;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
 }

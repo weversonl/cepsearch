@@ -1,7 +1,7 @@
 package com.cepsearch.annotations;
 
 import com.cepsearch.annotations.impl.PostalCodeValidationImpl;
-import com.cepsearch.util.message.ValidationMessages;
+import com.cepsearch.constants.Constants;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -13,11 +13,11 @@ import java.lang.annotation.*;
 @Documented
 public @interface PostalCodeValidation {
 
-    String message() default ValidationMessages.INVALID_POSTAL_CODE;
+    String message() default Constants.INVALID_POSTAL_CODE;
 
-    String example() default ValidationMessages.VALID_POSTAL_CODE_EXAMPLE;
+    String example() default Constants.VALID_POSTAL_CODE_EXAMPLE;
 
-    String description() default ValidationMessages.INVALID_POSTAL_CODE_DESCRIPTION;
+    String description() default Constants.INVALID_POSTAL_CODE_DESCRIPTION;
 
     Class<?>[] groups() default {};
 

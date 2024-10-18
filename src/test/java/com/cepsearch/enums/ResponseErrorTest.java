@@ -1,6 +1,6 @@
 package com.cepsearch.enums;
 
-import com.cepsearch.util.message.ExceptionMessages;
+import com.cepsearch.constants.Constants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ class ResponseErrorTest {
     @DisplayName("Should return correct message for TECHNICAL_EXCEPTION")
     void messageForTechnicalException() {
         ResponseError responseError = ResponseError.TECHNICAL_EXCEPTION;
-        String expectedMessage = ExceptionMessages.TECHNICAL_EXCEPTION;
+        String expectedMessage = Constants.TECHNICAL_EXCEPTION;
 
         String actualMessage = responseError.getMessage();
 
@@ -35,7 +35,7 @@ class ResponseErrorTest {
     @DisplayName("Should return correct description for TECHNICAL_EXCEPTION")
     void descriptionForTechnicalException() {
         ResponseError responseError = ResponseError.TECHNICAL_EXCEPTION;
-        String expectedDescription = ExceptionMessages.TECHNICAL_DESCRIPTION;
+        String expectedDescription = Constants.TECHNICAL_DESCRIPTION;
 
         String actualDescription = responseError.getDescription();
 
@@ -57,7 +57,7 @@ class ResponseErrorTest {
     @DisplayName("Should return correct message for BAD_REQUEST_EXCEPTION")
     void messageForBadRequestException() {
         ResponseError responseError = ResponseError.BAD_REQUEST_EXCEPTION;
-        String expectedMessage = ExceptionMessages.BAD_REQUEST_EXCEPTION;
+        String expectedMessage = Constants.BAD_REQUEST_EXCEPTION;
 
         String actualMessage = responseError.getMessage();
 

@@ -14,6 +14,11 @@ server:
   port: ${PORT:8080}
   servlet:
     context-path: /api
+  http2:
+    enabled: true
+  compression:
+    enabled: true
+    mime-types: application/json
 
 springdoc:
   swagger-ui:
@@ -53,7 +58,7 @@ logging:
   level:
     com:
       cepsearch:
-        client: TRACE
+        client: INFO
 
 feign:
   client:
