@@ -2,8 +2,7 @@ services:
   api1: &api
     depends_on:
       - redis
-    #image: weversonlemos/cepsearch:latest
-    build: .
+    image: weversonlemos/cepsearch:latest
     container_name: api1
     restart: always
     ports:

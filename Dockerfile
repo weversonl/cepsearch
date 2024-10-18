@@ -10,11 +10,9 @@ COPY pom.xml ./pom.xml
 
 #Build a jar
 RUN mvn clean package
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
 
 #Extract the jar into layers
-RUN java -Djarmode=tools -jar app.jar extract --layers --destination extracted
+RUN java -Djarmode=tools -jar target/app.jar extract --layers --destination extracted
 
 
 #STAGE 2 - Use the layered jar to run Spring Boot app
