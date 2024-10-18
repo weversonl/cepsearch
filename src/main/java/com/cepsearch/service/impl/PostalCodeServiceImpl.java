@@ -7,23 +7,24 @@ import com.cepsearch.exception.impl.NotFoundException;
 import com.cepsearch.exception.impl.TechnicalException;
 import com.cepsearch.service.PostalCodeService;
 import feign.FeignException;
-import lombok.RequiredArgsConstructor;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-
-import javax.validation.Valid;
 
 import static com.cepsearch.enums.ResponseError.NOT_FOUND_EXCEPTION;
 
 @Slf4j
 @Service
 @Validated
-@RequiredArgsConstructor
 public class PostalCodeServiceImpl implements PostalCodeService {
 
     private final PostalCodeClient postalCodeClient;
+
+    public PostalCodeServiceImpl(PostalCodeClient postalCodeClient) {
+        this.postalCodeClient = postalCodeClient;
+    }
 
     @Override
     @Cacheable("postalcodes")

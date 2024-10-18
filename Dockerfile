@@ -2,17 +2,19 @@
 
 #STAGE 1 - Build the layered jar
 
-#Use Maven base image 
+#Use Maven base image
 FROM maven:3.8.7-openjdk-18-slim AS builder
-COPY src /home/app/src
-COPY pom.xml /home/app
+WORKDIR /builder
+COPY src ./src
+COPY pom.xml ./pom.xml
 
 #Build a jar
-RUN mvn -f /home/app/pom.xml package
-WORKDIR /home/app/target
+RUN mvn clean package
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
 
 #Extract the jar into layers
-RUN java -Djarmode=layertools -jar /home/app/target/*.jar extract
+RUN java -Djarmode=tools -jar app.jar extract --layers --destination extracted
 
 
 #STAGE 2 - Use the layered jar to run Spring Boot app
@@ -21,21 +23,10 @@ RUN java -Djarmode=layertools -jar /home/app/target/*.jar extract
 FROM openjdk:17-alpine
 USER root
 
-#Copy individual layers one by one 
-COPY --from=builder /home/app/target/dependencies/ ./
-
-#Add this to fix a bug which happens during sequential copy commands
-RUN true
-COPY --from=builder /home/app/target/spring-boot-loader/ ./
-
-RUN true
-COPY --from=builder /home/app/target/snapshot-dependencies/ ./
-
-#RUN true
-#COPY --from=builder /home/app/target/custom-dependencies/ ./
-
-RUN true
-COPY --from=builder /home/app/target/application/ ./
+COPY --from=builder /builder/extracted/dependencies/ ./
+COPY --from=builder /builder/extracted/spring-boot-loader/ ./
+COPY --from=builder /builder/extracted/snapshot-dependencies/ ./
+COPY --from=builder /builder/extracted/application/ ./
 
 #Expose port on which Spring Boot app will run
 EXPOSE ${PORT:-8080}
@@ -44,4 +35,4 @@ EXPOSE ${PORT:-8080}
 USER 1001
 
 #Start Spring Boot app
-ENTRYPOINT ["java","org.springframework.boot.loader.JarLauncher"]
+ENTRYPOINT ["java","-jar", "app.jar"]

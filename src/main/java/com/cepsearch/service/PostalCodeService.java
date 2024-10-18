@@ -3,7 +3,7 @@ package com.cepsearch.service;
 import com.cepsearch.domain.dto.PostalCodeDTO;
 import com.cepsearch.domain.response.PostalCodeResponse;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 public interface PostalCodeService {
 

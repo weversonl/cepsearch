@@ -3,8 +3,8 @@ package com.cepsearch.annotations;
 import com.cepsearch.annotations.impl.PostalCodeValidationImpl;
 import com.cepsearch.constants.Constants;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 import java.lang.annotation.*;
 
 @Target({ElementType.FIELD})

@@ -3,12 +3,13 @@ spring:
     name: cepsearch
   cache:
     type: redis
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
-    username: ${REDIS_USER:default}
-    password: ${REDIS_PASSWORD:default}
-    timeout: 60000
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      username: ${REDIS_USER:default}
+      password: ${REDIS_PASSWORD:default}
+      timeout: 60000
 
 server:
   port: ${PORT:8080}
