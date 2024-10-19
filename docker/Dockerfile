@@ -5,8 +5,8 @@
 #Use Maven base image
 FROM maven:3.8.7-openjdk-18-slim AS builder
 WORKDIR /builder
-COPY src ./src
-COPY pom.xml ./pom.xml
+COPY ./app/src ./src
+COPY ./app/pom.xml ./pom.xml
 
 #Build a jar
 RUN mvn clean package

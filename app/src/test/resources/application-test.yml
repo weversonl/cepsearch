@@ -1,0 +1,82 @@
+spring:
+  application:
+    name: cepsearch
+  cache:
+    type: redis
+  data:
+    redis:
+      host: test
+      port: 6379
+      username: test
+      password: test
+      timeout: 60000
+
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /api
+  http2:
+    enabled: true
+  compression:
+    enabled: true
+    mime-types: application/json
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  show-actuator: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - metrics
+          - prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+  info:
+    env:
+      enabled: true
+
+info:
+  app: ${spring.application.name}
+  developer: ${MAINTAINER}
+  github: ${GITHUB}
+  linkedin: ${LINKEDIN}
+  usedTools:
+    - Java
+    - SpringBoot
+    - Redis
+    - Actuator
+    - Prometheus
+    - Grafana
+    - Nginx
+    - SpringDoc
+
+logging:
+  level:
+    com:
+      cepsearch:
+        client: INFO
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+        defaultRequestHeaders:
+          user-agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'
+
+app:
+  client:
+    brasilapi:
+      cep:
+        url: test

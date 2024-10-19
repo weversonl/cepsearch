@@ -22,6 +22,8 @@ server:
     mime-types: application/json
 
 springdoc:
+  api-docs:
+    enabled: true
   swagger-ui:
     path: /swagger-ui.html
     enabled: true
@@ -45,15 +47,19 @@ management:
       enabled: true
 
 info:
-  app: cepsearch
-  developer: weversonl
-  github: https://github.com/WeversonL/cepsearch
-  linkedin: https://www.linkedin.com/in/weversonlemos/
+  app: ${spring.application.name}
+  developer: ${MAINTAINER}
+  github: ${GITHUB}
+  linkedin: ${LINKEDIN}
   usedTools:
     - Java
     - SpringBoot
     - Redis
     - Actuator
+    - Prometheus
+    - Grafana
+    - Nginx
+    - SpringDoc
 
 logging:
   level:
@@ -73,4 +79,4 @@ app:
   client:
     brasilapi:
       cep:
-        url: https://brasilapi.com.br/api/cep/v2
+        url: ${API_URL}
