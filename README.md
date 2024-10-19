@@ -9,7 +9,7 @@ Prometheus, which integrate with Grafana to view metrics and reports in graphs. 
 developed to practice programming and to study. Everything was integrated with the github workflow, to generate the
 docker image build and send them to dockerhub
 
-**You can access the API in production through the endpoint**
+**You can access the API in production through the endpoint, deployed in AWS EC2**
 **https://api.weverson.dev/api/cep/{any-postalcode}**
 
 **To consume on a website with front-end, use the link below**
@@ -22,11 +22,13 @@ docker image build and send them to dockerhub
 - [Spring Cloud](https://spring.io/projects/spring-cloud)
 - [SpringDoc OpenAPI 3](https://springdoc.org/)
 - [Redis](https://redis.io/docs/about/)
+- [Nginx](https://nginx.org/en/docs/)
 - [Actuator](https://spring.io/guides/gs/actuator-service/)
 - [Prometheus](https://prometheus.io/docs/prometheus/latest/getting_started/)
 - [Grafana](https://grafana.com/docs/grafana/latest/)
 - [Docker](https://docs.docker.com/get-started/)
 - [Github Workflow](https://docs.github.com/en/actions/using-workflows)
+- [AWS](https://docs.aws.amazon.com/)
 
 ## Practices adopted
 
