@@ -10,7 +10,10 @@ developed to practice programming and to study. Everything was integrated with t
 docker image build and send them to dockerhub
 
 **You can access the API in production through the endpoint**
-**https://cepsearch.up.railway.app/api/cep/{any-postalcode}**
+**https://api.weverson.dev/api/cep/{any-postalcode}**
+
+**To consume on a website with front-end, use the link below**
+**https://cepsearch.weverson.dev**
 
 ## Technologies
 
