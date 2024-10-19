@@ -95,6 +95,7 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
       - ./config/grafana:/etc/grafana/provisioning
+      - ./config/grafana/dashboards:/var/lib/grafana/dashboards
     deploy:
       resources:
         limits:

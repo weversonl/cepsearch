@@ -98,16 +98,6 @@ docker image build and send them to dockerhub
 
          http://localhost:3000/
 
-2.  Add a dashboard. You can create your own, or use created dashboards. Recommend this
-
-        Menu -> Dashboards -> New -> Import
-
-        Add this URL: https://grafana.com/grafana/dashboards/4701-jvm-micrometer/
-
-        Select default Prometheus datasource
-
-        Load
-
 ### With Prometheus
 
 ![prometheus_screenshot](assets/prometheus.png)
