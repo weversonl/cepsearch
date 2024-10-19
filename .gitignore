@@ -2,6 +2,8 @@ HELP.md
 target/
 .mvn/
 *.mvn
+docker-compose.prod.yaml
+nginx-prod.conf
 
 ### STS ###
 .apt_generated

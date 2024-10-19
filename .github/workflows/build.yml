@@ -26,6 +26,7 @@ jobs:
         uses: docker/build-push-action@v5.3.0
         with:
           context: .
+          file: docker/Dockerfile
           push: true
           tags: |
             weversonlemos/cepsearch:v1
